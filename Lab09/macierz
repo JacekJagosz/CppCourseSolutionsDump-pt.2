@@ -1,0 +1,22 @@
+#ifndef DEKLARACJE_H_
+#define DEKLARACJE_H_
+#include <iostream>
+#include <cmath>
+
+class Macierz{
+  
+  public:
+    int** tab;
+    int n;
+    Macierz(int, int, bool=false);
+    Macierz(const Macierz&);
+    Macierz(const Macierz&&)=delete;
+    Macierz& operator=(const Macierz&);
+    Macierz& operator=(const Macierz&&) = delete;
+    ~Macierz();
+    Macierz iloczyn(const Macierz&);
+    Macierz& transponuj();
+    friend std::ostream& operator<<(std::ostream&, const Macierz&);
+};
+
+#endif

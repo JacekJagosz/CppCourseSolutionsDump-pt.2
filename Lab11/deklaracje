@@ -1,0 +1,135 @@
+#ifndef DEKLARACJE_H_
+#define DEKLARACJE_H_
+#include <iostream>
+#include <cmath>
+#include <utility>
+#include <vector>
+
+template<class T> 
+class Stos{
+  
+  public:
+    std::vector<T> s;
+    int end=0;
+    Stos();
+    ~Stos();
+    void push(T);
+    void ifBigger(T);
+    T pop();
+    T top();
+    void topD();
+    int size();
+    void del();
+    template <class V>
+    friend std::ostream& operator<<(std::ostream&, const Stos<V>&);
+};
+//a
+template<class T>
+Stos<T>::Stos() {
+  s.resize(100);
+}
+
+template<class T>
+Stos<T>::~Stos() {
+  s.clear();
+}
+//b
+template<class T>
+void Stos<T>::push(T a){
+  if(s.size()<=end+1){
+    s.resize(s.size()+100);
+  }
+  s[end]=a;
+  ++end;
+}
+//c
+template<class T>
+void Stos<T>::ifBigger(T a){
+  while(end>0){
+    if(s[end-1]<a){
+      s[end]=a;
+      ++end;
+      break;
+    }
+    else{
+      --end;
+    }
+  }
+  if(end==0){
+    s[0]=a;
+    ++end;
+  }
+
+}
+//d
+template<class T>
+T Stos<T>::pop(){
+  return s[--end];
+}
+//e
+template<class T>
+T Stos<T>::top(){
+  return s[end-1];
+}
+//f
+template<class T>
+void Stos<T>::topD(){
+  --end;
+}
+//g
+template<class T>
+int Stos<T>::size(){
+  return end;
+}
+//h
+template<class T>
+void Stos<T>::del(){
+  end=0;
+}
+//i
+template<class T>
+std::ostream& operator<<(std::ostream& ost, const Stos<T>& a){
+  ost<<"[";
+  for(int i=0; i<a.end; i++){
+    ost<<" "<<a.s[i]<<",";
+  }
+  ost<<"]"<<std::endl;
+  return ost;
+}
+
+
+#endif
+
+
+
+/*
+class IFS{
+  
+  public:
+    std::vector<std::pair<double, double>> pos;
+    std::vector<std::vector<double>> coef;
+    std::vector<double> prop;
+    IFS(std::vector<std::vector<double>>, std::vector<double>);
+    void convert(int n);
+    void save(std::string);
+
+};
+
+#endif
+
+
+class Macierz{
+  
+  public:
+    int** tab;
+    int n;
+    Macierz(int, int, bool=false);
+    Macierz(const Macierz&);
+    Macierz(const Macierz&&)=delete;
+    Macierz& operator=(const Macierz&);
+    Macierz& operator=(const Macierz&&) = delete;
+    ~Macierz();
+    Macierz iloczyn(const Macierz&);
+    Macierz& transponuj();
+    friend std::ostream& operator<<(std::ostream&, const Macierz&);
+};*/

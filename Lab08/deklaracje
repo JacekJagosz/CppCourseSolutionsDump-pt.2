@@ -1,0 +1,25 @@
+#ifndef DEKLARACJE_H_
+#define DEKLARACJE_H_
+#include <iostream>
+#include <cmath>
+class Wektor{
+  
+  public:
+    double x,y,z;
+    Wektor();
+    Wektor(double, double, double);
+    double dl() const;
+    Wektor operator*(double) const;
+    friend Wektor operator*(double, const Wektor &);
+    Wektor operator+(const Wektor&) const;
+    double skal(const Wektor&) const;
+    Wektor wekt(const Wektor&) const;
+    double miesz(const Wektor&, const Wektor&) const;
+    friend std::ostream& operator<<(std::ostream&, const Wektor&);
+
+};
+
+double indukcja(const Wektor&, const Wektor&);
+Wektor lorentz(double, const Wektor&, const Wektor&, const Wektor&);
+double amper(double, const Wektor&, const Wektor&, const Wektor&);
+#endif
